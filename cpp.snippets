@@ -1,0 +1,65 @@
+snippet fastio
+ios::sync_with_stdio(0);
+cin.tie(0);
+$1
+endsnippet
+
+
+snippet mtest
+auto solve = [&] () {
+	$1
+};
+int TT;
+cin >> TT;
+while (TT--) {
+	solve();
+}
+endsnippet
+
+
+snippet fileio
+freopen("input.txt", "r", stdin);
+freopen("output.txt", "w", stdout);
+$1
+endsnippet
+
+
+snippet forn
+for (int i = 0; i < n; ++i) {
+	$1
+}
+endsnippet
+
+
+snippet debug
+struct error {
+	template<class T1, class T2> error& operator << (pair<T1, T2> a) {
+		return *this << "(" << a.first << ", " << a.second << ")";
+	}
+	template<class T> typename enable_if<is_scalar<T>::value || is_same<T, string>::value, error&>::type operator << (T a) {
+		cerr << boolalpha << a;
+		return *this;
+	}
+	template<class T> typename enable_if<!is_scalar<T>::value && !is_same<T, string>::value, error&>::type operator << (T a) {
+		*this << "{";
+		for (auto i = begin(a); i != end(a); ++i)
+			*this << ", " + 2 * (begin(a) == i) << *i;
+		return *this << "}";
+	}
+};
+
+template<class T> void dout(string name, T a) {
+	error() << name << " : " << a << "\n";
+}
+
+template<class T1, class... T2> void dout(string names, T1 a, T2... args) {
+	error() << names.substr(0, names.find(',')) << " : " << a << " | ";
+	dout(names.substr(names.find(',') + 2), args...);
+}
+
+#ifdef LOCAL
+	#define debug(...) dout(#__VA_ARGS__, __VA_ARGS__)
+#else
+	#define debug(...) 42
+#endif
+endsnippet
