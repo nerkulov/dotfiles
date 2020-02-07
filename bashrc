@@ -11,7 +11,7 @@ export EDITOR=vim
 # aliases
 
 alias contest='python3 ~/scripts/contest.py'
-alias vimrc='vim ~/.vimrc'
+alias vrc='vim ~/.vimrc'
 alias src='source ~/.bashrc'
 alias ls='ls --color'
 
@@ -23,6 +23,6 @@ co() {
 }
 
 task() {
-	rm -rf $1; mkdir $1; cd $1; cp ~/tpl.cpp ./$1.cpp 
+	mkdir $1; cd $1; cp ~/tpl.cpp ./$1.cpp 
 }
 
